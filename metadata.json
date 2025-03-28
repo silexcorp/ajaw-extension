@@ -4,7 +4,7 @@
   "name": "Ajaw",
   "settings-schema": "org.gnome.shell.extensions.ajaw",
   "shell-version": [
-    "43", "45", "46", "47", "48"
+    "43"
   ],
   "url": "https://github.com/silexcorp/ajaw-extension",
   "uuid": "ajaw@weareokan.com",
