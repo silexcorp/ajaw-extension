@@ -1,0 +1,15 @@
+{
+  "description": "Ajaw es una extensión para GNOME del Calendario Maya Cholq'ij.",
+  "gettext-domain": "ajaw",
+  "name": "Ajaw",
+  "settings-schema": "org.gnome.shell.extensions.ajaw",
+  "shell-version": [
+    "43", "45", "46", "47", "48"
+  ],
+  "url": "https://github.com/silexcorps/ajaw-extension",
+  "uuid": "ajaw@weareokan.com",
+  "version": 1,
+  "donations": {
+      "paypal": "weareokan"
+  }
+}
