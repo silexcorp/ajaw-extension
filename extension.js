@@ -72,7 +72,7 @@ const AjawIndicator = GObject.registerClass(
             // Developer webpage
             let menuItem = new PopupMenu.PopupMenuItem('Desarrollador');
             menuItem.connect('activate', () => {
-                GLib.spawn_command_line_async('xdg-open http://weareokan.com/tech');
+                Gio.AppInfo.launch_default_for_uri('xdg-open http://tech.weareokan.com', null);
             });
             this.menu.addMenuItem(menuItem);
         }
