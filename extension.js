@@ -70,7 +70,7 @@ const AjawIndicator = GObject.registerClass(
             this.menu.addMenuItem(glyphItem);
 
             // Developer webpage
-            let menuItem = new PopupMenu.PopupMenuItem('Desarrollador');
+            let menuItem = new PopupMenu.PopupMenuItem('Developer');
             menuItem.connect('activate', () => {
                 Gio.AppInfo.launch_default_for_uri('xdg-open http://tech.weareokan.com', null);
             });
@@ -100,7 +100,7 @@ const AjawIndicator = GObject.registerClass(
                 'Tijax', 'Toj', "Tz'i'", "B'atz'", 'E', 'Aj', "I'x", 'Tz\'ikin', 'Ajmaq', "No'j",
                 'Tijax', 'Kawoq', 'Ajpu', 'Imox', "Iq'", "Aq'ab'al", "K'at", 'Kan', 'Kame', "Q'anil"
             ];
-            return names[position - 1] || 'Desconocido';
+            return names[position - 1] || 'Ajaw';
         }
 
         //get glyph icon
