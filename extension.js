@@ -51,8 +51,7 @@ const AjawIndicator = GObject.registerClass(
             // Number of nenergy
             let energyLabel = new St.Label({
                 text: glyph.energy.toString(),
-                style_class: 'ajaw-energy',
-                style: 'font-family: Maya;'
+                style_class: 'ajaw-energy'
             });
             boxHorizontal.add_child(energyLabel);
 
