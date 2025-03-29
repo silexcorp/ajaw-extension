@@ -71,7 +71,7 @@ const AjawIndicator = GObject.registerClass(
             // Developer webpage
             let menuItem = new PopupMenu.PopupMenuItem('Developer');
             menuItem.connect('activate', () => {
-                Gio.AppInfo.launch_default_for_uri('xdg-open http://tech.weareokan.com', null);
+                Gio.AppInfo.launch_default_for_uri('http://tech.weareokan.com', null);
             });
             this.menu.addMenuItem(menuItem);
         }
