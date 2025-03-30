@@ -5,7 +5,64 @@ const PopupMenu = imports.ui.popupMenu;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
+    class Utils {
+        static getDifferenceBetweenDays() {
+            const strD1 = '2018/02/02';
+
+            // Convert String to Date Object
+            const d1 = new Date(strD1);
+            const d2 = new Date();
+
+            // Difference in days
+            const delta = Math.floor((d2 - d1) / (1000 * 60 * 60 * 24));
+            return delta;
+        }
+
+        // Get glyph name
+        static _getNameMaya(language) {
+            const names = [
+                "Toj", "Tz'i'", "B'atz'", "E", "Aj", "I'x", "Tz'ikin", "Ajmaq", "No'j",
+                "Tijax", "Kawoq", "Ajpu", "Imox", "Iq'", "Aq'ab'al", "K'at", "Kan", "Kame", "Kej",
+                "Q'anil"
+            ];
+            return names[language] || "Tijax";
+        }
+
+        // Get glyph icon
+        static _getGlyphIcon(language) {
+            const glyphs = [
+                "glifo_mulu", "glifo_elab", "glifo_batz", "glifo_eyub", "glifo_ben",
+                "glifo_ix", "glifo_tzikin", "glifo_txabin", "glifo_kixkab", "glifo_chinax", "glifo_kaq",
+                "glifo_ajaw", "glifo_imox", "glifo_iq", "glifo_watan", "glifo_kana", "glifo_abak",
+                "glifo_tox", "glifo_chej", "glifo_lambat"
+            ];
+            return glyphs[language] || "glifo_chinax";
+        }
+
+        // Calculate glyph name and energy
+        static calculate() {
+            const valor = Utils.getDifferenceBetweenDays();
+            const number = valor % 13;
+            const letter = valor % 20;
+
+            const num = number + 1;
+            const name = Utils._getNameMaya(letter);
+            const icon = Utils._getGlyphIcon(letter) + ".png";
+
+            return new Glyph(name, num, icon);
+        }
+    }
+
+    class Glyph {
+        constructor(name, energy, icon) {
+            this.name = name;
+            this.energy = energy;
+            this.icon = icon;
+        }
+    }
+
 const AjawIndicator = GObject.registerClass(
+
     class AjawIndicator extends PanelMenu.Button {
         _init() {
             super._init(0.0, 'Ajaw', false);
@@ -21,7 +78,7 @@ const AjawIndicator = GObject.registerClass(
         }
 
         _updateGlyph() {
-            let glyph = this._calculateGlyph();
+            let glyph = Utils.calculate();
 
             this.menu.removeAll();
 
@@ -33,7 +90,7 @@ const AjawIndicator = GObject.registerClass(
                 y_align: St.Align.MIDDLE  
             });
             
-            // Horizontal contetn for (energy and name)
+            // Horizontal content for (energy and name)
             let boxHorizontal = new St.BoxLayout({
                 vertical: false,
                 style_class: 'ajaw-box-horizontal',
@@ -48,7 +105,7 @@ const AjawIndicator = GObject.registerClass(
             });
             box.add_child(glyphIcon);
 
-            // Number of nenergy
+            // Number of energy
             let energyLabel = new St.Label({
                 text: glyph.energy.toString(),
                 style_class: 'ajaw-energy'
@@ -75,45 +132,8 @@ const AjawIndicator = GObject.registerClass(
             });
             this.menu.addMenuItem(menuItem);
         }
-
-        //Calculate glyph name and energy
-        _calculateGlyph() {
-        
-            let startDate = new Date(2018, 1, 2);
-            let now = new Date();
-            let difference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-
-            let energy = (difference % 13) + 1;
-            let position = (difference % 20) + 1;
-
-            return {
-                energy: energy,
-                name: this._getNameMaya(position),
-                icon: this._getGlyphIcon(position) + '.png'
-            };
-        }
-
-        //Get glpyh name
-        _getNameMaya(position) {
-            const names = [
-                'Tijax', 'Toj', "Tz'i'", "B'atz'", 'E', 'Aj', "I'x", 'Tz\'ikin', 'Ajmaq', "No'j",
-                'Tijax', 'Kawoq', 'Ajpu', 'Imox', "Iq'", "Aq'ab'al", "K'at", 'Kan', 'Kame', "Q'anil"
-            ];
-            return names[position - 1] || 'Ajaw';
-        }
-
-        //get glyph icon
-        _getGlyphIcon(position) {
-            const icons = [
-                'glifo_chinax', 'glifo_mulu', 'glifo_elab', 'glifo_batz', 'glifo_eyub', 'glifo_ben',
-                'glifo_ix', 'glifo_tzikin', 'glifo_txabin', 'glifo_kixkab', 'glifo_chinax', 'glifo_kaq',
-                'glifo_ajaw', 'glifo_imox', 'glifo_iq', 'glifo_watan', 'glifo_kana', 'glifo_abak',
-                'glifo_tox', 'glifo_chej'
-            ];
-            return icons[position - 1] || 'ajaw';
-        }
     }
-);
+)
 
 let ajawIndicator;
 
