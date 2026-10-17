@@ -3,9 +3,10 @@
   "gettext-domain": "ajaw",
   "name": "Ajaw",
   "shell-version": [
-    "43"
+    "45",
+    "46"
   ],
   "url": "https://github.com/silexcorp/ajaw-extension",
   "uuid": "ajaw@weareokan.com",
-  "version": 4
+  "version": 5
 }
