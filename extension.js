@@ -104,6 +104,12 @@ const AjawIndicator = GObject.registerClass(
             const glyphIcon = new St.Icon({
                 gicon: Gio.icon_new_for_string(`${this._extensionPath}/icons/${glyph.icon}`),
                 icon_size: 120,
+                width: 120,
+                height: 120,
+                x_align: Clutter.ActorAlign.CENTER,
+                y_align: Clutter.ActorAlign.CENTER,
+                x_expand: false,
+                y_expand: false,
                 style_class: 'ajaw-glyph',
             });
             box.add_child(glyphIcon);
