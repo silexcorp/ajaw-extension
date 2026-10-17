@@ -1,3 +1,4 @@
+import Clutter from 'gi://Clutter';
 import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
 import St from 'gi://St';
@@ -88,15 +89,15 @@ const AjawIndicator = GObject.registerClass(
             const box = new St.BoxLayout({
                 vertical: true,
                 style_class: 'ajaw-box',
-                x_align: St.Align.MIDDLE, 
-                y_align: St.Align.MIDDLE  
+                x_align: Clutter.ActorAlign.CENTER, 
+                y_align: Clutter.ActorAlign.CENTER  
             });
             
             // Horizontal content for (energy and name)
             const boxHorizontal = new St.BoxLayout({
                 vertical: false,
                 style_class: 'ajaw-box-horizontal',
-                x_align: St.Align.MIDDLE,
+                x_align: Clutter.ActorAlign.CENTER,
             });
 
             // Big icon for glyph

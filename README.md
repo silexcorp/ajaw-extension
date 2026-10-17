@@ -9,52 +9,79 @@ It contains the knowledge and wisdom of the Mayan Civilization, a legacy that ha
 
 ![alt text](https://github.com/silexcorp/ajaw_gnome_extension/blob/master/screenshot/ubuntu.png?raw=true)
 
-## Installation
+## Compatibility
 
-### 1) Install support packages
+- GNOME Shell 45 and 46 (including 46.x)
 
-#### Ubuntu/Debian
+## Testing and Development
 
-    sudo apt install gnome-shell-extension-manager
+Follow these steps to test the extension locally:
 
-### 2) Install extension
+### 1) Link or Copy Extension to GNOME Extensions Directory
 
-#### Ubuntu/Debian
+Create the extensions folder (if it doesn't already exist) and link the project repository directly:
 
-#### &nbsp;&nbsp;&nbsp;&nbsp;Open the Extension Manager (installed above), search for Ajaw and click Install.
+```bash
+mkdir -p ~/.local/share/gnome-shell/extensions
+ln -s "$(pwd)" ~/.local/share/gnome-shell/extensions/ajaw@weareokan.com
+```
 
-### 3) Activate after installation
+> **Note:** If you already have an installed version of Ajaw, remove it first:
+> ```bash
+> rm -rf ~/.local/share/gnome-shell/extensions/ajaw@weareokan.com
+> ```
 
-#### Ubuntu/Debian/Fedora
+### 2) Reload GNOME Shell
 
-##### &nbsp;&nbsp;&nbsp;&nbsp;At this point, Ajaw should be running. If you reversed steps 1 and 2 above, you will need to restart your session by logging out and then back in.
+GNOME Shell needs to be reloaded to discover new extensions:
 
-## Beta testing
+- **On X11 (default on many desktop setups):**
+  Press `Alt + F2`, type `r`, and press `Enter`.
+- **On Wayland:**
+  Log out and log back in (or restart your session).
 
-##### Advanced users requesting bug fixes or asking for new features may occasionally be asked to help QA.
+### 3) Enable the Extension
 
-### 1) Remove existing copy of Ajaw
+Enable the extension using the command line:
 
-##### &nbsp;&nbsp;&nbsp;&nbsp;Remove existing copy of Ajaw - expert users only!
+```bash
+gnome-extensions enable ajaw@weareokan.com
+```
 
-    # rm -ri ~/.local/share/gnome-shell/extensions/ajaw@weareokan.com
+Or verify its status:
 
-### 2) Clone from GitHub
+```bash
+gnome-extensions info ajaw@weareokan.com
+```
 
-    mkdir -p ~/.local/share/gnome-shell/extensions
-    git clone https://github.com/silexcorp/ajaw-extension.git ~/.local/share/gnome-shell/extensions/ajaw@weareokan.com -b develop
+### 4) Inspect Logs / Debugging
 
-### 3) Activate develop version
+To monitor output or errors in real time:
 
-#### Ubuntu/Debian/Fedora
+```bash
+journalctl -f -o cat /usr/bin/gnome-shell
+```
 
-##### &nbsp;&nbsp;&nbsp;&nbsp;You will need to restart your session by logging out and then back in.
+Or filter specifically for Ajaw messages:
+
+```bash
+journalctl /usr/bin/gnome-shell -f | grep -i ajaw
+```
+
+## Packaging the Extension
+
+To build a zip file ready for distribution:
+
+```bash
+gnome-extensions pack --extra-source=icons --force
+```
 
 ## Credits
-Ajaw was create by www.weareokan.com
+Ajaw was created by [We Are Okan](http://tech.weareokan.com)
 
 ## Icons
 
 ### Original Theme
 * (We are Okan) Ajaw - Calendario Maya [ajaw](https://play.google.com/store/apps/details?id=com.alexandermateo.ajaw).
-* (icons) created by [fredymateo](https://github.com/fredymateo).
+* Icons created by [fredymateo](https://github.com/fredymateo).
+
