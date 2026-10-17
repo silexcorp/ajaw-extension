@@ -73,7 +73,7 @@ journalctl /usr/bin/gnome-shell -f | grep -i ajaw
 To build a zip file ready for distribution:
 
 ```bash
-gnome-extensions pack --extra-source=icons --force
+gnome-extensions pack --extra-source=icons --extra-source=numbers --force
 ```
 
 ## Credits

@@ -85,7 +85,7 @@ const AjawIndicator = GObject.registerClass(
 
             this.menu.removeAll();
 
-            // Content for glyph
+            // Main vertical container
             const box = new St.BoxLayout({
                 vertical: true,
                 style_class: 'ajaw-box',
@@ -93,49 +93,60 @@ const AjawIndicator = GObject.registerClass(
                 y_align: Clutter.ActorAlign.CENTER  
             });
             
-            // Horizontal content for (energy and name)
-            const boxHorizontal = new St.BoxLayout({
+            // Top row: [Number] [Glyph Icon] side-by-side
+            const topRow = new St.BoxLayout({
                 vertical: false,
-                style_class: 'ajaw-box-horizontal',
+                style_class: 'ajaw-top-row',
                 x_align: Clutter.ActorAlign.CENTER,
+                y_align: Clutter.ActorAlign.CENTER,
             });
 
-            // Big icon for glyph
+            // Mayan number image on the left
+            const energyIcon = new St.Icon({
+                gicon: Gio.icon_new_for_string(`${this._extensionPath}/numbers/${glyph.energy}.png`),
+                icon_size: 70,
+                width: 70,
+                height: 70,
+                x_align: Clutter.ActorAlign.CENTER,
+                y_align: Clutter.ActorAlign.CENTER,
+                x_expand: false,
+                y_expand: false,
+                style_class: 'ajaw-energy-icon',
+            });
+            topRow.add_child(energyIcon);
+
+            // Mayan glyph icon on the right
             const glyphIcon = new St.Icon({
                 gicon: Gio.icon_new_for_string(`${this._extensionPath}/icons/${glyph.icon}`),
-                icon_size: 120,
-                width: 120,
-                height: 120,
+                icon_size: 100,
+                width: 100,
+                height: 100,
                 x_align: Clutter.ActorAlign.CENTER,
                 y_align: Clutter.ActorAlign.CENTER,
                 x_expand: false,
                 y_expand: false,
                 style_class: 'ajaw-glyph',
             });
-            box.add_child(glyphIcon);
+            topRow.add_child(glyphIcon);
 
-            // Number of energy
-            const energyLabel = new St.Label({
-                text: glyph.energy.toString(),
-                style_class: 'ajaw-energy'
-            });
-            boxHorizontal.add_child(energyLabel);
+            box.add_child(topRow);
 
-            // Name of glyph
+            // Name of glyph centered below
             const nameLabel = new St.Label({
-                text: " " + glyph.name,
+                text: glyph.name,
                 style_class: 'ajaw-name',
+                x_align: Clutter.ActorAlign.CENTER,
+                y_align: Clutter.ActorAlign.CENTER,
             });
-            boxHorizontal.add_child(nameLabel);
-            box.add_child(boxHorizontal);
+            box.add_child(nameLabel);
             
-            // Add glyph, name and icon to container
+            // Add container to menu item
             const glyphItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
             glyphItem.add_child(box);
             this.menu.addMenuItem(glyphItem);
 
             // Developer webpage
-            const menuItem = new PopupMenu.PopupMenuItem('Developer');
+            const menuItem = new PopupMenu.PopupMenuItem('Desarrollador');
             menuItem.connect('activate', () => {
                 Gio.AppInfo.launch_default_for_uri('http://tech.weareokan.com', null);
             });
