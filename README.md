@@ -7,7 +7,7 @@ Also known as the Sacred Calendar, Tzolkin, Lunar Calendar, or the Count of Days
 It has 260 days, divided into 13 periods of 20 energies each, which repeat cyclically.
 It contains the knowledge and wisdom of the Mayan Civilization, a legacy that has been passed down from generation to generation through oral tradition and documentary references.
 
-![alt text](https://github.com/silexcorp/ajaw_gnome_extension/blob/master/screenshot/ubuntu.png?raw=true)
+![alt text](https://github.com/silexcorp/ajaw-extension/blob/master/screenshot/ubuntu.png?raw=true)
 
 ## Compatibility
 
