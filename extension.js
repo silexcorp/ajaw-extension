@@ -104,9 +104,9 @@ const AjawIndicator = GObject.registerClass(
             // Mayan number image on the left (square canvas, right-aligned)
             const energyIcon = new St.Icon({
                 gicon: Gio.icon_new_for_string(`${this._extensionPath}/numbers/${glyph.energy}.png`),
-                icon_size: 56,
-                width: 56,
-                height: 56,
+                icon_size: 54,
+                width: 54,
+                height: 54,
                 x_align: Clutter.ActorAlign.CENTER,
                 y_align: Clutter.ActorAlign.CENTER,
                 x_expand: false,
