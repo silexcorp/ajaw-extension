@@ -104,9 +104,9 @@ const AjawIndicator = GObject.registerClass(
             // Mayan number image on the left
             const energyIcon = new St.Icon({
                 gicon: Gio.icon_new_for_string(`${this._extensionPath}/numbers/${glyph.energy}.png`),
-                icon_size: 70,
-                width: 70,
-                height: 70,
+                icon_size: 50,
+                width: 50,
+                height: 50,
                 x_align: Clutter.ActorAlign.CENTER,
                 y_align: Clutter.ActorAlign.CENTER,
                 x_expand: false,
@@ -118,9 +118,9 @@ const AjawIndicator = GObject.registerClass(
             // Mayan glyph icon on the right
             const glyphIcon = new St.Icon({
                 gicon: Gio.icon_new_for_string(`${this._extensionPath}/icons/${glyph.icon}`),
-                icon_size: 100,
-                width: 100,
-                height: 100,
+                icon_size: 110,
+                width: 110,
+                height: 110,
                 x_align: Clutter.ActorAlign.CENTER,
                 y_align: Clutter.ActorAlign.CENTER,
                 x_expand: false,
